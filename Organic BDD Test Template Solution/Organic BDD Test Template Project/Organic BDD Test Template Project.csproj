@@ -9,7 +9,6 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.10.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
-    <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.8.35" />
 
     
 
@@ -35,7 +34,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Hooks\" />
     <Folder Include="Reports\" />
   </ItemGroup>
 

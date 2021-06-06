@@ -1,9 +1,15 @@
 ﻿Feature: Web UI Scenarios
-	Simple calculator for adding two numbers
+	Simple demonstration of spinning up a web driver.
 
-@mytag
-Scenario: Add two numbers
-	Given the first number is 50
-	And the second number is 70
-	When the two numbers are added
-	Then the result should be 120
+
+Scenario: Go to URL: Firefox
+	Given a "firefox" web driver is constructed
+	When the web driver navigates to "https://everynband.com"
+	Then the web page title is "Welcome to our website | everyn-music-collective.github.io"
+
+Scenario: Go to URL: Chrome
+	Given a "chrome" web driver is constructed
+	When the web driver navigates to "https://everynband.com"
+	Then the web page title is "Welcome to our website | everyn-music-collective.github.io"
+
+

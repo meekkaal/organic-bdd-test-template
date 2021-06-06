@@ -12,11 +12,11 @@ using OpenQA.Selenium.Firefox;
 
 namespace Organic_BDD_Test_Template_Project.Drivers
 {
-    class WebDriver
+    class WebDriverGenerator
     {
         private IWebDriver _webDriver;
 
-        public WebDriver()
+        public WebDriverGenerator()
         {
         }
 
