@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using Organic_BDD_Test_Template_Project.Drivers;
 using Organic_BDD_Test_Template_Project.Tools;
 using System;
 using System.Collections.Generic;
@@ -25,16 +26,15 @@ namespace Organic_BDD_Test_Template_Project.Hooks
         }
 
         [BeforeScenario]
-        public void BeforeScenario()
+        public void BeforeScenario(BrowserDriver browserDriver)
         {
             //TODO: implement logic that has to run before executing each scenario
         }
 
         [AfterScenario]
-        public void AfterScenario()
+        public void AfterScenario(BrowserDriver browserDriver)
         {
-            _scenarioContext.TryGetValue<IWebDriver>("webDriver", out driver);
-            driver.Dispose();
+            browserDriver.Dispose();
         }
 
         [AfterTestRun]
