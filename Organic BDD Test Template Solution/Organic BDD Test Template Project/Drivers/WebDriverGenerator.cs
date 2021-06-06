@@ -8,32 +8,32 @@ using WebDriverManager.DriverConfigs.Impl;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
-
+using TechTalk.SpecFlow;
 
 namespace Organic_BDD_Test_Template_Project.Drivers
 {
+    [Binding]
     class WebDriverGenerator
     {
         private IWebDriver _webDriver;
+        private readonly ScenarioContext _scenarioContext;
 
-        public WebDriverGenerator()
+        public WebDriverGenerator(ScenarioContext scenarioContext)
         {
+            _scenarioContext = scenarioContext;
         }
-
-
-        public IWebDriver CreateChromeDriver()
+        public void CreateChromeDriver()
         {
             new DriverManager().SetUpDriver(new ChromeConfig());
             _webDriver = new ChromeDriver();
-            return _webDriver;
+            _scenarioContext.TryAdd("webDriver", _webDriver);
         }
 
-        public IWebDriver CreateFireFoxDriver()
+        public void CreateFireFoxDriver()
         {
             new DriverManager().SetUpDriver(new FirefoxConfig());
             _webDriver = new FirefoxDriver();
-            return _webDriver;
+            _scenarioContext.TryAdd("webDriver", _webDriver);
         }
-
     }
 }

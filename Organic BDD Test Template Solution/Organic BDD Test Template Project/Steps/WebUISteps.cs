@@ -17,35 +17,35 @@ namespace Organic_BDD_Test_Template_Project.Steps
 
         private readonly ScenarioContext _scenarioContext;
         private IWebDriver driver;
-        private WebDriverGenerator driverGenerator = new WebDriverGenerator();
+        private WebDriverGenerator driverGenerator;
 
         public WebUISteps(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
+            driverGenerator = new WebDriverGenerator(_scenarioContext);
         }
 
         [Given(@"a ""(.*)"" web driver is constructed")]
         public void GivenAWebDriverIsConstructed(string browserName)
         {
-
             switch (browserName.ToLower())
             {
                 case "firefox":
-                    driver = driverGenerator.CreateFireFoxDriver();
+                    driverGenerator.CreateFireFoxDriver();
                     break;
                 case "chrome":
-                    driver = driverGenerator.CreateChromeDriver();
+                    driverGenerator.CreateChromeDriver();
                     break;
                 default:
                     break;
             }
+            _scenarioContext.TryGetValue("webDriver", out driver);
         }
 
         [When(@"the web driver navigates to ""(.*)""")]
         public void WhenTheWebDriverNavigatesTo(string url)
         {
             driver.Navigate().GoToUrl(url);
-            Thread.Sleep(1000);
         }
 
         [Then(@"the web page title is ""(.*)""")]

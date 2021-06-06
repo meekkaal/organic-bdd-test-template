@@ -1,4 +1,5 @@
-﻿using Organic_BDD_Test_Template_Project.Tools;
+﻿using OpenQA.Selenium;
+using Organic_BDD_Test_Template_Project.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,13 @@ namespace Organic_BDD_Test_Template_Project.Hooks
     [Binding]
     public sealed class Hooks
     {
-        // For additional details on SpecFlow hooks see http://go.specflow.org/doc-hooks
+        private ScenarioContext _scenarioContext;
+        private IWebDriver driver;
+
+        public Hooks(ScenarioContext scenarioContext)
+        {
+            _scenarioContext = scenarioContext;
+        }
 
         [BeforeTestRun]
         public static void BeforeTestRun()
@@ -26,7 +33,8 @@ namespace Organic_BDD_Test_Template_Project.Hooks
         [AfterScenario]
         public void AfterScenario()
         {
-            //TODO: implement logic that has to run after executing each scenario
+            _scenarioContext.TryGetValue<IWebDriver>("webDriver", out driver);
+            driver.Dispose();
         }
 
         [AfterTestRun]
